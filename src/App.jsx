@@ -4,7 +4,6 @@ import {
   View,
   Button,
   ScrollView,
-  Slider,
   TextInput,
   StatusBar,
 } from 'react-native';
@@ -19,8 +18,9 @@ import {
 } from './constants';
 import StorageService from './services/StorageService';
 import HomeStyle from './style/Home';
+import Slider from '@react-native-community/slider';
 
-let professorConst;
+let professorTable;
 
 const App = () => {
   const [customBackground, setCustomBackground] = useState('#ffffff');
@@ -41,10 +41,22 @@ const App = () => {
     if (isInitialMount.current) {
       isInitialMount.current = false;
 
-      syntacticConst = new Syntactic();
-      pragmaticConst = new Pragmatic();
-      semanticConst = new Semantic();
-      professorConst = new Professor();
+      professorTable = new Professor().getMatrix().map(eachItem => (
+        <View style={{flexDirection: 'row'}}>
+          <Text
+            onPress={() => goToChallenge(eachItem[0])}
+            selectable
+            style={getProfessorStyle(eachItem[1])}>
+            {eachItem[0]}
+          </Text>
+          <Text
+            onPress={() => goToChallenge(eachItem[0])}
+            selectable
+            style={getProfessorStyle(eachItem[1])}>
+            {eachItem[1]}
+          </Text>
+        </View>
+      ));
 
       StorageService.load('background').then(background => {
         background = background === undefined ? '#ffffff' : background;
@@ -95,9 +107,11 @@ const App = () => {
     switch (button) {
       case 'left':
         setPageNumber(parseInt(pageNumber) - 1);
+        setVisible(ViewsConst.TEXT);
         break;
       case 'right':
         setPageNumber(parseInt(pageNumber) + 1);
+        setVisible(ViewsConst.TEXT);
         break;
       case 'professor':
         setVisible(ViewsConst.PROFESSOR);
@@ -174,23 +188,7 @@ const App = () => {
         </ScrollView>
       );
     } else if (visible === ViewsConst.PROFESSOR) {
-      let returnValue = professorConst.getMatrix().map(eachItem => (
-        <View style={{flexDirection: 'row'}}>
-          <Text
-            onPress={() => goToChallenge(eachItem[0])}
-            selectable
-            style={getProfessorStyle(eachItem[1])}>
-            {eachItem[0]}
-          </Text>
-          <Text
-            onPress={() => goToChallenge(eachItem[0])}
-            selectable
-            style={getProfessorStyle(eachItem[1])}>
-            {eachItem[1]}
-          </Text>
-        </View>
-      ));
-      return <ScrollView>{returnValue}</ScrollView>;
+      return <ScrollView>{professorTable}</ScrollView>;
     } else if (visible === ViewsConst.CONFIG) {
       return (
         <View
@@ -298,7 +296,7 @@ const App = () => {
   };
 
   return (
-    <View style={HomeStyle.container}>
+    <View style={[HomeStyle.container, {backgroundColor: customBackground}]}>
       <StatusBar hidden />
       {!isStarted ? (
         <Text
@@ -308,8 +306,7 @@ const App = () => {
         </Text>
       ) : (
         <View style={HomeStyle.box}>
-          <View
-            style={[HomeStyle.boxLeft, {backgroundColor: customBackground}]}>
+          <View style={HomeStyle.boxLeft}>
             <TextInput
               style={{
                 height: 50,
