@@ -5,9 +5,9 @@ const TextConstants = {
     'We want you to enhance your understanding and awareness about English rules\n' +
     'to contribute with the development of good writing skills.',
   authors:
-    'Autoras: Jacqueline García Botero\n' +
+    'Jacqueline García Botero\n' +
     'Larissa Tatiana Rico Buitragos\n' +
-    'Margarita Alexandra Botero Restrepo\n' +
+    'Margarita Alexandra Botero Restrepo\n\n' +
     'Armenia, Quindio, Colombia (2020)',
   exercises:
     'exercises:\n\n' +

@@ -174,7 +174,7 @@ const App = () => {
     } else if (visible === ViewsConst.EXERCISES) {
       return (
         <ScrollView style={HomeStyle.scrollView}>
-          <Text style={{fontSize: 13}} selectable>
+          <Text style={{fontSize: 13, color: '#222222'}} selectable>
             {TextConstants.exercises}
           </Text>
         </ScrollView>
@@ -197,7 +197,7 @@ const App = () => {
             value={sliderValue}
             onValueChange={value => sliderValueChange(value)}
           />
-          <Text style={{paddingLeft: 10}}>
+          <Text style={{paddingLeft: 10, color: '#222222'}}>
             {TextConstants.settings}: {customBackground}
           </Text>
         </View>
@@ -295,6 +295,12 @@ const App = () => {
     }
   };
 
+  const changeChallenge = challenge => {
+    setTextType(challenge);
+    setPageNumber(1);
+    setVisible(ViewsConst.TEXT);
+  };
+
   return (
     <View style={[HomeStyle.container, {backgroundColor: customBackground}]}>
       <StatusBar hidden />
@@ -365,10 +371,7 @@ const App = () => {
             <View style={HomeStyle.boxTop}>
               <View style={HomeStyle.topButtons}>
                 <Button
-                  onPress={() => {
-                    setTextType('SY');
-                    setPageNumber(1);
-                  }}
+                  onPress={() => changeChallenge('SY')}
                   title={'syntactic\nchallenges'}
                   style={HomeStyle.topButtons}
                   color="#3C8515"
@@ -376,10 +379,7 @@ const App = () => {
               </View>
               <View style={HomeStyle.topButtons}>
                 <Button
-                  onPress={() => {
-                    setTextType('P');
-                    setPageNumber(1);
-                  }}
+                  onPress={() => changeChallenge('P')}
                   title={'pragmatic\nchallenges'}
                   style={HomeStyle.topButtons}
                   color="#3C8515"
@@ -387,10 +387,7 @@ const App = () => {
               </View>
               <View style={HomeStyle.topButtons}>
                 <Button
-                  onPress={() => {
-                    setTextType('SE');
-                    setPageNumber(1);
-                  }}
+                  onPress={() => changeChallenge('SE')}
                   title={'semantic\nchallenges'}
                   style={HomeStyle.topButtons}
                   color="#3C8515"
