@@ -6,12 +6,6 @@ const HomeStyle = StyleSheet.create({
   container: {
     flex: 1,
   },
-  boxNotifications: {
-    height: 25,
-    width: width,
-    flexDirection: 'column',
-    backgroundColor: '#aaaaaa',
-  },
   contentBox: {
     backgroundColor: '#ffff00',
     height: height - 75,
@@ -95,7 +89,7 @@ const HomeStyle = StyleSheet.create({
   },
   topButtons: {
     width: (width - 100) / 3,
-    height: 40,
+    height: 50,
   },
   startedButton: {
     height: height,
