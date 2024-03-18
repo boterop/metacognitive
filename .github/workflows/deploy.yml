@@ -63,7 +63,7 @@ on:
               with:
                 serviceAccountJson: service_account.json
                 packageName: com.SBGames.metacognitive
-                releaseFiles: app/build/outputs/bundle/release/app-release.aab
+                releaseFiles: android/app/build/outputs/bundle/release/app-release.aab
                 track: production
                 whatsNewDirectory: distribution/
       
