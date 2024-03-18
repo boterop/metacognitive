@@ -50,6 +50,7 @@ on:
                 signingKeyBase64: ${{ secrets.SIGNING_KEY }}
                 alias: ${{ secrets.ALIAS }}
                 keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+                keyPassword: ${{ secrets.KEY_PASSWORD }}
 
             - name: Tag Release
               run: |
