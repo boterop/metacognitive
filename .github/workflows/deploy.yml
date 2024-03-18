@@ -1,14 +1,17 @@
 name: Deploy to Playstore
 
 on:
-  push:
+  pull_request:
     branches:
-      - release/
+      - main
+    types:
+      - closed
 
       jobs:
         deploy:
+          if: github.event.pull_request.merged == true
           runs-on: ubuntu-latest
-      
+
           steps:
             - uses: actions/checkout@v4
             - name: Set up JDK 1.8
@@ -16,10 +19,10 @@ on:
               with:
                 distribution: "oracle"
                 java-version: 18
-            
+
             - name: Install dependency
               run: yarn install
-            
+
             - name: Setup Android SDK
               uses: android-actions/setup-android@v3
             
@@ -31,15 +34,15 @@ on:
                 key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
                 restore-keys: |
                   ${{ runner.os }}-gradle-
-      
+
             - name: Setup Gradle
               uses: gradle/actions/setup-gradle@v3
-      
+
             - name: Build
               run: |
                 cd android
                 ./gradlew bundleRelease
-            
+
             - name: Sign Release
               uses: r0adkll/sign-android-release@v1
               with:
@@ -47,17 +50,17 @@ on:
                 signingKeyBase64: ${{ secrets.SIGNING_KEY }}
                 alias: ${{ secrets.ALIAS }}
                 keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-      
+
             - name: Tag Release
               run: |
                 version_name=${GITHUB_REF##*/}
                 echo "Tagging release with tag $version_name"
                 git tag $version_name
                 git push origin --tags
-                
+
             - name: Create service_account.json
               run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
-      
+
             - name: Deploy to Production
               uses: r0adkll/upload-google-play@v1
               with:
@@ -66,4 +69,3 @@ on:
                 releaseFiles: android/app/build/outputs/bundle/release/app-release.aab
                 track: production
                 whatsNewDirectory: distribution/
-      
