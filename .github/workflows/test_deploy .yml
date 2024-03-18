@@ -51,8 +51,9 @@ jobs:
         run: |
           version_name=v0.0.0
           echo "Tagging release with tag $version_name"
-          git tag $version_name release/$version_name
+          git tag $version_name main
           git push origin --tags
+
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
 
@@ -60,7 +61,7 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: com.jshvarts.flows
-          releaseFile: app/build/outputs/bundle/release/app-release.aab
+          packageName: com.SBGames.metacognitive
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
           track: production
           whatsNewDirectory: distribution/
