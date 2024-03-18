@@ -49,14 +49,14 @@ jobs:
 
       - name: Tag Release
         run: |
-          version_name=${GITHUB_REF##*/}
+          version_name=v0.0.0
           echo "Tagging release with tag $version_name"
           git tag $version_name release/$version_name
           git push origin --tags
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json
 
-      - name: Deploy to Alpha
+      - name: Deploy to Production
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
