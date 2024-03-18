@@ -51,7 +51,7 @@ jobs:
         run: |
           version_name=v0.0.0
           echo "Tagging release with tag $version_name"
-          git tag $version_name main
+          git tag $version_name
           git push origin --tags
 
       - name: Create service_account.json

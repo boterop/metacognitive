@@ -52,7 +52,7 @@ on:
               run: |
                 version_name=${GITHUB_REF##*/}
                 echo "Tagging release with tag $version_name"
-                git tag $version_name release/$version_name
+                git tag $version_name
                 git push origin --tags
                 
             - name: Create service_account.json
