@@ -67,3 +67,6 @@ yarn-error.log
 
 # Env
 .env
+
+# Build cache
+/android/app/src/main/assets/*
