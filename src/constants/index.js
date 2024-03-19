@@ -7,11 +7,11 @@ import TextConstants from './TextConstants';
 import ViewsConst from './ViewsConst';
 
 export {
-  ColorsConst,
-  Pragmatic,
-  Professor,
-  Semantic,
-  Syntactic,
-  TextConstants,
-  ViewsConst,
+	ColorsConst,
+	Pragmatic,
+	Professor,
+	Semantic,
+	Syntactic,
+	TextConstants,
+	ViewsConst,
 };
