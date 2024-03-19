@@ -1,10 +1,9 @@
 name: Test Deploy to Playstore
 
 on:
-  pull_request:
-    branches: 
-      - main
-    types: [closed]
+    push:
+      tags:
+        - 'v*.[0-99]'
 
 jobs:
   deploy:
