@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 (28.03.2024)
+
+- Create privacy policy to republish in PlayStore
+
 ## 2.0.0 (19.03.2024)
 
 - Fix auto release
