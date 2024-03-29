@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2 (29.03.2024)
+
+- Unnecessary features removed.
+
 ## 2.0.1 (28.03.2024)
 
 - Create privacy policy to republish in PlayStore
