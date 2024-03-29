@@ -71,6 +71,7 @@ const HomeStyle = StyleSheet.create({
 	notes: {
 		height: height - 75,
 		color: '#222222',
+		marginLeft: 10,
 	},
 	authors: {
 		textAlign: 'center',
