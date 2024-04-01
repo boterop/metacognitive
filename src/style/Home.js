@@ -5,6 +5,7 @@ var { height, width } = Dimensions.get('window');
 const HomeStyle = StyleSheet.create({
 	container: {
 		flex: 1,
+		backgroundColor: '#ffffff',
 	},
 	contentBox: {
 		backgroundColor: '#ffff00',
